@@ -1,54 +1,75 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
     Text,
     View,
-    TextInput,
-    ScrollView
+    ScrollView,
 } from 'react-native';
+import { useDispatch,useSelector } from 'react-redux';
+import { getArticle } from '../store/action';
 import {styles} from '../styles/stylesheet';
+import Search from '../components/search.component';
 import Slider from '../components/slider.component';
 import Splash from '../components/splash.component';
+import CategoriesComponent from '../components/categories.component'
 import Navbar from '../components/navbar.component';
+import Footer from '../components/footer.component';
 import Card from '../components/card.component';
 
-function Home(){
+function Home({navigation}){
+  const dispatch = useDispatch()
+
   const [splash,setSplash] = useState(true)
 
   setTimeout(() => {
     setSplash(false)
   }, 2000);
 
+  useEffect(()=>{
+    dispatch(getArticle())
+  },[dispatch]);
+
+  const listArticle = useSelector(state=>state.reducer.article);
+  listArticle.sort(function(a, b){return b.id-a.id});
+
+
   return(
     <>
       {
         splash ? <Splash /> :
-        <View style={{backgroundColor:'white',height:'100%'}}>
+        <View style={styles.container}>
           <Navbar />
-          <View style={{height:'8%',marginTop:'20%',alignItems:'center'}}>
-            <TextInput
-            style={{width:'90%',borderRadius:10,borderWidth:1,borderColor:'grey',height:'70%'}}
-            placeholder="search here"
-            />
-          </View>
-          <Text style={{fontFamily:'Qualy',fontSize:20,marginLeft:'5%',marginBottom:'2%'}}>Latest News</Text>
-          <Slider />
-          <View style={{height:'50%',backgroundColor:'white'}}>
-            <Text style={{fontFamily:'Qualy',fontSize:20,marginLeft:'5%',marginTop:'2%',marginBottom:'1%',color:'black'}}>   
-              Around The World
-            </Text>
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-            >
-            <View style={{flex:1,alignItems:'center'}}>
-              <Card/>
-              <Card/>
-              <Card/>
-              <Card/>
-              <Card/>
-              <Card/>
+          <ScrollView
+            nestedScrollEnabled={true}
+          >
+            <Search />
+            <Text style={styles.title}>Categories</Text>
+            <CategoriesComponent />
+            <Text style={styles.title}>Latest News</Text>
+            <Slider />
+            <View style={{height:250,backgroundColor:'white',marginBottom:'5%'}}>
+              <Text style={styles.title}>   
+                Around The World
+              </Text>
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                nestedScrollEnabled={true}
+              >
+              <View style={{flex:1,alignItems:'center'}}>
+                {
+                  listArticle.map((element)=>{
+                    return <Card key={element.id}
+                    id={element.id}
+                    title={element.title}
+                    thumbnail={element.thumbnail}
+                    article={element.article}
+                    />
+                  })
+                }
+              </View>
+              </ScrollView>
             </View>
-            </ScrollView>
-          </View>
+            <Footer />
+          </ScrollView>
         </View>
       }
     </>

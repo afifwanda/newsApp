@@ -8,6 +8,10 @@ target 'client' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
+
   target 'clientTests' do
     inherit! :complete
     # Pods for testing

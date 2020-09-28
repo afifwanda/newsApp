@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     Text,
     View,
@@ -9,12 +9,11 @@ import {styles} from '../styles/stylesheet';
 import Navbar from '../components/navbar.component';
 import Card from '../components/card.component';
 
-function Categories({navigation,route}){
-  const categories = route.params.Category
 
-  const article = useSelector(state=>state.reducer.articleCategories);
-  article.sort(function(a, b){return b.id-a.id});
-  
+function Search({navigation,route}){
+
+  const result = useSelector(state=>state.reducer.searchResult);
+  result.sort(function(a, b){return b.id-a.id});
 
   return(
     <View style={styles.container}>
@@ -24,11 +23,11 @@ function Categories({navigation,route}){
           showsVerticalScrollIndicator={false}
         >
         <Text style={styles.title}>   
-          Categories : {categories}
+          Search Result :
         </Text>
         <View style={{flex:1,alignItems:'center'}}>
         {
-          article.map((element)=>{
+          result.map((element)=>{
             return <Card key={element.id}
             id={element.id}
             title={element.title}
@@ -44,4 +43,4 @@ function Categories({navigation,route}){
   )
 }
 
-export default Categories
+export default Search

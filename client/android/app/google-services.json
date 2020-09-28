@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1058802432107",
+    "firebase_url": "https://reactnativenews-bfd38.firebaseio.com",
+    "project_id": "reactnativenews-bfd38",
+    "storage_bucket": "reactnativenews-bfd38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058802432107:android:ce6e8970568b3e234d592e",
+        "android_client_info": {
+          "package_name": "com.reactNativeNews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058802432107-bakjnen4khd36b18l12822fv3pfabetf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASUn0kPs_wTdZuXgFj8hdhO47q9bCcCco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058802432107-bakjnen4khd36b18l12822fv3pfabetf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

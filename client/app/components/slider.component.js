@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet,Text,View } from 'react-native';
+import { StyleSheet,Text,View,TouchableOpacity } from 'react-native';
+import { useSelector,useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+import { getDetailArticle } from '../store/action'
 import Swiper from 'react-native-swiper';
 
-class Slider extends Component {
-  render(){
+function Slider() {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-    return(
-      <Swiper
-        height={150}
-        autoplay={true}
-        autoplayTimeout={10}
-        style={styles.slider}
-        showsPagination={false}
-      >
-        <View style={styles.slide1}>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet mdjsgsjk kadhnsagu lsllsl lsllls lslldkjao
-          </Text>
-        </View>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>Beautiful</Text>
-        </View>
-        <View style={styles.slide1}>
-          <Text style={styles.text}>And simple</Text>
-        </View>
-      </Swiper>
-    )
+  const listTitle = useSelector(state=>state.reducer.article);
+  listTitle.sort(function(a, b){return b.id-a.id});
+
+  function handleClick(id){
+    dispatch(getDetailArticle(Number(id)))
+    navigation.navigate("Article")
   }
+
+  return(
+    <Swiper
+      height={150}
+      autoplay={true}
+      autoplayTimeout={10}
+      style={styles.slider}
+      showsPagination={false}
+    >
+    {
+      listTitle.map((element)=>{
+        return <View style={styles.slide1} key={element.id}>
+          <TouchableOpacity
+          onPress={()=>handleClick(element.id)}
+          >
+            <Text style={styles.text}>
+              {element.title}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      })
+    }
+    </Swiper>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -38,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingLeft: 10,
-    backgroundColor: '#e69393',
+    backgroundColor: '#77a2bd',
     borderRadius: 20,
     width:'90%',
     marginLeft: '5%',
@@ -48,28 +61,11 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 2,
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#97CAE5',
-    borderRadius: 20,
-    width:'90%',
-    marginLeft: '5%'
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9',
-    borderRadius: 20,
-    width:'90%',
-    marginLeft: '5%'
-  },
   text: {
     color: '#fff',
     fontFamily: 'Dosis',
     fontSize:20,
+    textAlign:'justify'
   }
 })
 

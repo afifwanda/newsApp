@@ -10,7 +10,7 @@ import {faNewspaper} from '@fortawesome/free-solid-svg-icons';
 
 function Splash(){
   return(
-    <View style={styles.container}>
+    <View style={styles.splashContainer}>
       <Animatable.View animation="bounceIn" duration={3000}>
         <FontAwesomeIcon icon={ faNewspaper } size={40} style={{color:"white",marginRight:10}} />
       </Animatable.View>
