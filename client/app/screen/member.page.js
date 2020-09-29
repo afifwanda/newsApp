@@ -19,7 +19,7 @@ function Member({navigation,route}){
         <ScrollView
           showsVerticalScrollIndicator={false}
         >
-        <View style={{alignItems:'center'}}>
+        <View style={{alignItems:'center',minHeight:500}}>
           <View style={{width:'90%',marginBottom:'5%'}}>
             <Text style={{fontFamily:'Dosis',fontSize:25,textAlign:'center'}}>   
               Welcome Contributors!
@@ -31,7 +31,7 @@ function Member({navigation,route}){
               Article List
             </Text>
           </View>
-          <View style={{flex:1,alignItems:'center',minHeight:500}}>
+          <View style={{flex:1,alignItems:'center'}}>
             
           </View>
         </View>

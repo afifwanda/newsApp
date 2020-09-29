@@ -38,48 +38,6 @@ function CreateArticle({navigation}){
   }
 
   
-  // const createFormData = (image) => {
-  //   const data = new FormData()
-  //   data.append("image",{
-  //     name: image.fileName,
-  //     type: image.type,
-  //     uri : Platform.OS === 'android' ? image.uri : image.uri.replace("file://","")
-  //   },image.fileName)
-  //   console.log(data,'ini data')
-  // }
-
-  // const addImage = () => {
-  //   const options = {
-  //     quality: 1.0,
-  //     maxWidth: 400,
-  //     maxHeight: 400,
-  //   }
-
-  //   ImagePicker.showImagePicker(options, response =>{
-  //     if (response.didCancel) {
-  //       console.log('User cancelled photo picker');
-  //     } else if (response.error) {
-  //       console.log('ImagePicker Error: ', response.error);
-  //     } else if (response.customButton) {
-  //       console.log('User tapped custom button: ', response.customButton);
-  //     } else {
-  //       setTimeout(() => {
-  //         console.log(response,'ini uri')
-  //         fetch("https://secure-coast-32465.herokuapp.com/upload",{
-  //           method: "POST",
-  //           body: createFormData(response)
-  //         })
-  //         .then(response=>response.json())
-  //         .then(response=>{
-  //           console.log('success',response)
-  //         })
-  //         .catch(err=>{
-  //           console.log(err)
-  //         })
-  //       }, 100);
-  //     }
-  //   })
-  // }
 
   function handleSubmit(title,categories,thumbnail,article){
     dispatch(addArticle(title,categories,thumbnail,article))

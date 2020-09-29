@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "1058802432107",
-    "firebase_url": "https://reactnativenews-bfd38.firebaseio.com",
-    "project_id": "reactnativenews-bfd38",
-    "storage_bucket": "reactnativenews-bfd38.appspot.com"
+    "project_number": "909510501434",
+    "firebase_url": "https://rn-news-2c395.firebaseio.com",
+    "project_id": "rn-news-2c395",
+    "storage_bucket": "rn-news-2c395.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058802432107:android:ce6e8970568b3e234d592e",
+        "mobilesdk_app_id": "1:909510501434:android:253023e715ca59f0b94103",
         "android_client_info": {
-          "package_name": "com.reactNativeNews"
+          "package_name": "com.client"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1058802432107-bakjnen4khd36b18l12822fv3pfabetf.apps.googleusercontent.com",
+          "client_id": "909510501434-6f0kjlaftkjqmrk54is4h0d2h64u9ibu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyASUn0kPs_wTdZuXgFj8hdhO47q9bCcCco"
+          "current_key": "AIzaSyB4Q3DBqJzxcZPKw6pBwDhaOYwuo2U87vM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1058802432107-bakjnen4khd36b18l12822fv3pfabetf.apps.googleusercontent.com",
+              "client_id": "909510501434-6f0kjlaftkjqmrk54is4h0d2h64u9ibu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

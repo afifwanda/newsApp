@@ -7,6 +7,7 @@ import {
 import { useSelector } from 'react-redux';
 import {styles} from '../styles/stylesheet';
 import Navbar from '../components/navbar.component';
+import Footer from '../components/footer.component';
 import Card from '../components/card.component';
 
 
@@ -25,7 +26,7 @@ function Search({navigation,route}){
         <Text style={styles.title}>   
           Search Result :
         </Text>
-        <View style={{flex:1,alignItems:'center'}}>
+        <View style={{flex:1,alignItems:'center',minHeight:500}}>
         {
           result.map((element)=>{
             return <Card key={element.id}
@@ -37,6 +38,7 @@ function Search({navigation,route}){
           })
         }
         </View>
+        <Footer />
         </ScrollView>
       </View>
     </View>
