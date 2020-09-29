@@ -9,6 +9,7 @@ import {styles} from '../styles/stylesheet';
 import Navbar from '../components/navbar.component';
 import Footer from '../components/footer.component';
 import Card from '../components/card.component';
+import ShimmerNews from '../components/shimmer.component';
 
 function Categories({navigation,route}){
   const categories = route.params.Category
@@ -29,6 +30,7 @@ function Categories({navigation,route}){
         </Text>
         <View style={{flex:1,alignItems:'center',minHeight:500}}>
         {
+          article.length === 0 ? <ShimmerNews /> :
           article.map((element)=>{
             return <Card key={element.id}
             id={element.id}

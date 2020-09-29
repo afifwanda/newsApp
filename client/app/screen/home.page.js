@@ -14,6 +14,7 @@ import CategoriesComponent from '../components/categories.component'
 import Navbar from '../components/navbar.component';
 import Footer from '../components/footer.component';
 import Card from '../components/card.component';
+import ShimmerNews from '../components/shimmer.component';
 
 function Home({navigation}){
   const dispatch = useDispatch()
@@ -30,7 +31,6 @@ function Home({navigation}){
 
   const listArticle = useSelector(state=>state.reducer.article);
   listArticle.sort(function(a, b){return b.id-a.id});
-
 
   return(
     <>
@@ -55,7 +55,8 @@ function Home({navigation}){
                 nestedScrollEnabled={true}
               >
               <View style={{flex:1,alignItems:'center'}}>
-                {
+                {listArticle.length === 0 ?
+                  <ShimmerNews /> :
                   listArticle.map((element)=>{
                     return <Card key={element.id}
                     id={element.id}

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet,Text,View,TouchableOpacity } from 'react-native';
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { getDetailArticle } from '../store/action'
+import { getDetailArticle } from '../store/action';
+import LinearGradient from 'react-native-linear-gradient';
+import { createShimmerPlaceholder } from 'react-native-shimmer-placeholder'
 import Swiper from 'react-native-swiper';
+
+const ShimmerPlaceHolder = createShimmerPlaceholder(LinearGradient)
 
 function Slider() {
   const navigation = useNavigation();
@@ -18,7 +22,14 @@ function Slider() {
   }
 
   return(
-    <Swiper
+    <>
+    {
+      listTitle.length === 0 ?
+      <View style={{width:'100%',flex:1,alignItems:'center'}}>
+        <ShimmerPlaceHolder style={{height:150,borderRadius:10,width:'90%'}}/> 
+      </View>
+       :
+      <Swiper
       height={150}
       autoplay={true}
       autoplayTimeout={10}
@@ -39,6 +50,8 @@ function Slider() {
       })
     }
     </Swiper>
+    }
+  </>
   )
 }
 

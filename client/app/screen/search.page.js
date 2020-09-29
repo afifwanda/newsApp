@@ -9,6 +9,7 @@ import {styles} from '../styles/stylesheet';
 import Navbar from '../components/navbar.component';
 import Footer from '../components/footer.component';
 import Card from '../components/card.component';
+import ShimmerNews from '../components/shimmer.component';
 
 
 function Search({navigation,route}){
@@ -27,7 +28,8 @@ function Search({navigation,route}){
           Search Result :
         </Text>
         <View style={{flex:1,alignItems:'center',minHeight:500}}>
-        {
+        { 
+          result.length === 0 ? <ShimmerNews /> :
           result.map((element)=>{
             return <Card key={element.id}
             id={element.id}
