@@ -13,16 +13,17 @@ import Footer from '../components/footer.component';
 import {addArticle} from '../store/action';
 import {useDispatch} from 'react-redux';
 import {actions,defaultActions,RichEditor,RichToolbar} from 'react-native-pell-rich-editor'
-//import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 import {Picker} from '@react-native-community/picker';
 
 function CreateArticle({navigation}){
   const dispatch = useDispatch()
-
+  const baseImage ='https://secure-coast-32465.herokuapp.com/media/1601439908413-Denně.png';
+  const baseUrl = 'https://secure-coast-32465.herokuapp.com';
   const [disabled,setDisabled] = useState(false)
   const [title,setTitle] = useState('')
   const [categories,setCategories] = useState('News')
-  const [thumbnail,setThumbnail] = useState('')
+  const [thumbnail,setThumbnail] = useState(baseImage)
   const [content,setContent] = useState('')
   const [image,setImage] = useState('')
   const richText = useRef()
@@ -37,48 +38,54 @@ function CreateArticle({navigation}){
     setContent(html)
   }
 
-    // const createFormData = (image) => {
-  //   const data = new FormData()
-  //   data.append("image",{
-  //     name: image.fileName,
-  //     type: image.type,
-  //     uri : Platform.OS === 'android' ? image.uri : image.uri.replace("file://","")
-  //   },image.fileName)
-  //   console.log(data,'ini data')
-  // }
+  const createFormData = (image) => {
+    const data = new FormData()
+    data.append("image",{
+      name: image.fileName,
+      type: image.type,
+      uri : Platform.OS === 'android' ? image.uri : image.uri.replace("file://","")
+    })
 
-  // const addImage = () => {
-  //   const options = {
-  //     quality: 1.0,
-  //     maxWidth: 400,
-  //     maxHeight: 400,
-  //   }
+    return data;
+  }
 
-  //   ImagePicker.showImagePicker(options, response =>{
-  //     if (response.didCancel) {
-  //       console.log('User cancelled photo picker');
-  //     } else if (response.error) {
-  //       console.log('ImagePicker Error: ', response.error);
-  //     } else if (response.customButton) {
-  //       console.log('User tapped custom button: ', response.customButton);
-  //     } else {
-  //       setTimeout(() => {
-  //         console.log(response,'ini uri')
-  //         fetch("https://secure-coast-32465.herokuapp.com/upload",{
-  //           method: "POST",
-  //           body: createFormData(response)
-  //         })
-  //         .then(response=>response.json())
-  //         .then(response=>{
-  //           console.log('success',response)
-  //         })
-  //         .catch(err=>{
-  //           console.log(err)
-  //         })
-  //       }, 100);
-  //     }
-  //   })
-  // }
+  const addImage = () => {
+    const options = {
+      quality: 1.0,
+      maxWidth: 400,
+      maxHeight: 400,
+    }
+
+    ImagePicker.showImagePicker(options, response =>{
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+          fetch(`${baseUrl}/upload`,{
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            body: createFormData(response)
+          })
+          .then(response=>response.json())
+          .then(response=>{
+            console.log(response)
+            richText.current.insertImage(
+              `${baseUrl}/${response.imageUrl}`
+            )
+            setThumbnail(`${baseUrl}/${response.imageUrl}`)
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+      }
+    })
+  }
 
 
   function handleSubmit(title,categories,thumbnail,article){
@@ -130,14 +137,6 @@ function CreateArticle({navigation}){
             </View>
           </View>
           <View style={styles.inputContainer}>
-            <Text>Image Thumbnail :</Text>
-            <TextInput
-              style={{borderRadius:5,borderWidth:1,borderColor:'grey',height:40}}
-              placeholder="Insert image url"
-              onChangeText={text=> setThumbnail(text)}
-            />
-          </View>
-          <View style={styles.inputContainer}>
             <Text>Article :</Text>
             <RichEditor 
               placeholder = {'please input content'}
@@ -152,7 +151,7 @@ function CreateArticle({navigation}){
               style={styles.toolbar}
               editor={richText}
               disabled={disabled}
-              //onPressAddImage={addImage}
+              onPressAddImage={addImage}
             />
           </View>
           <TouchableOpacity style={styles.submitButton} onPress={()=>handleSubmit(title,categories,thumbnail,content)}>

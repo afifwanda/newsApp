@@ -3,7 +3,9 @@ const app = express();
 const cors = require('cors');
 const multer = require('multer');
 const port = process.env.PORT || 3001
-const route = require('./router/router')
+const route = require('./router/router');
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
 let storage = multer.diskStorage({
   destination: (req,file,cb) => {
@@ -13,9 +15,10 @@ let storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname)
   }
 })
+
+
   
 const upload = multer({ storage })
-
 app.use(cors());
 app.use(express.urlencoded({ extended:true }))
 app.use(express.json())
