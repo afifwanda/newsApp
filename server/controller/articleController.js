@@ -53,7 +53,7 @@ class articleController{
     }
     Article.update(obj,{where:{id:id}})
     .then(result=>{
-      res.status(201).json(result)
+      res.status(201).json(obj)
     })
     .catch(err=>{
       next({status: 500, msg: err})
