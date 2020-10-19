@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-community/async-storage';
 const baseUrl = "https://secure-coast-32465.herokuapp.com/";
 
 export const getArticle = () => {
@@ -58,5 +59,15 @@ export const addArticle = (title,categories,thumbnail,article) => {
         addData: addResult,
       }
     })
+  }
+}
+
+export const login = (username,password) => {
+  const tokenId = 'ekekekeke'
+  if(username === "admin" && password === "Admin"){
+    return async token => {
+      await AsyncStorage.setItem('loginToken', tokenId)
+      token()
+    }
   }
 }

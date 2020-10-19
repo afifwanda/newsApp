@@ -43,7 +43,6 @@ export const styles = StyleSheet.create({
       color:'black'
     },
     submitButton:{
-      flex:1,
       backgroundColor:'#91c28d',
       width:100,
       alignItems:'center',
@@ -51,6 +50,11 @@ export const styles = StyleSheet.create({
       borderRadius:10,
       marginTop:10,
       height:25,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.3,
+      shadowRadius: 5,
+      elevation: 2,
     },
     splashContainer:{
       display: 'flex',
