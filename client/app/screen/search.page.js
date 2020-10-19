@@ -27,7 +27,7 @@ function Search({navigation,route}){
         <Text style={styles.title}>   
           Search Result :
         </Text>
-        <View style={{flex:1,alignItems:'center',minHeight:500}}>
+        <View style={{flex:1,alignItems:'center',minHeight:560}}>
         { 
           result.length === 0 ? <ShimmerNews /> :
           result.map((element)=>{

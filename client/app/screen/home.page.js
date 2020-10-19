@@ -46,7 +46,7 @@ function Home({navigation}){
             <CategoriesComponent />
             <Text style={styles.title}>Latest News</Text>
             <Slider />
-            <View style={{height:250,backgroundColor:'white',marginBottom:'5%'}}>
+            <View style={{height:270,backgroundColor:'white',marginBottom:'5%'}}>
               <Text style={styles.title}>   
                 Around The World
               </Text>

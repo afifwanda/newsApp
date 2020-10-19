@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {login} from '../store/action';
 import {styles} from '../styles/stylesheet';
 import Navbar from '../components/navbar.component';
@@ -15,12 +16,22 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 
 function Login(){
+  const navigation = useNavigation()
   const [username,setUsername] = useState(null)
   const [password,setPassword] = useState(null)
+  const [warning,setWarning] = useState(false)
 
-  const getData = async () => {
+  const getUser =() => {
     try {
-      const value = await AsyncStorage.getItem('loginToken')
+      AsyncStorage.getItem('loginToken', (error, result) => {
+        if (result === 'ekekekeke') {
+          setWarning(false)
+          navigation.navigate('Member')
+        }
+        else{
+          setWarning(true)
+        }
+    });
       console.log(value)
     } catch(e) {
       // error reading value
@@ -29,7 +40,7 @@ function Login(){
 
   function handleSubmit(username,password){
     login(username,password)
-    getData()
+    getUser()
   }
 
 
@@ -66,6 +77,12 @@ function Login(){
             <TouchableOpacity style={styles.submitButton} onPress={()=>handleSubmit(username,password)}>
               <Text style={{fontFamily:'Qualy',color:'white',fontSize:15,paddingBottom:0,paddingTop:0}}>Submit</Text>
             </TouchableOpacity>
+            {warning ?             
+              <View style={{marginTop:10}}>
+              <Text style={{color:'white'}}>Wrong Username/Password. Try Again.</Text>
+              </View> : 
+              <View/>
+            }
           </View>
         </View>
       </View>

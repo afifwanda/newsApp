@@ -9,6 +9,7 @@ import Article from './screen/article.page';
 import Search from './screen/search.page';
 import Member from './screen/member.page';
 import CreateArticle from './screen/createArticle.page';
+import EditArticle from './screen/editArticle';
 import Login from './screen/login.page';
 
 const Stack = createStackNavigator();
@@ -25,6 +26,7 @@ function App(){
             <Stack.Screen name="Search" component={Search}/>
             <Stack.Screen name="Member" component={Member}/>
             <Stack.Screen name="CreateArticle" component={CreateArticle}/>
+            <Stack.Screen name="EditArticle" component={EditArticle}/>
             <Stack.Screen name="Login" component={Login}/>
         </Stack.Navigator>
       </NavigationContainer>

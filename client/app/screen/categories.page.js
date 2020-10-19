@@ -28,7 +28,7 @@ function Categories({navigation,route}){
         <Text style={styles.title}>   
           Categories : {categories}
         </Text>
-        <View style={{flex:1,alignItems:'center',minHeight:500}}>
+        <View style={{flex:1,alignItems:'center',minHeight:560}}>
         {
           article.length === 0 ? <ShimmerNews /> :
           article.map((element)=>{

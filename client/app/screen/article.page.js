@@ -21,15 +21,9 @@ function Article(){
       <Navbar />
       <ScrollView>
       <View style={{flex:1,alignItems:'center'}}>
-        <View style={{marginTop:'15%',backgroundColor:'white',width:'90%',minHeight:500}}>
+        <View style={{marginTop:'15%',backgroundColor:'white',width:'90%',minHeight:600}}>
           <Text style={{fontFamily:'Dosis',fontSize:25}}>{article.title}</Text>
           <View style={{marginTop:'5%', marginBottom:'5%',alignItems:'center'}}>
-            <View style={{height:150,width:200}}>
-              <Image
-                style={{height:150,width:200}}
-                source={{uri:`${article.thumbnail}`}}
-              />
-            </View>
           </View>
           <HTML
           html= {`${article.article}`}
