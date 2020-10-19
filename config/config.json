@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "resumeWeb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "xvegjnjxyrplqi",
+    "password": "d533dfe3936e900ce656e6b6dc592c914a70474b21a4fb5c0d7b558abe758a3e",
+    "database": "d27qh430oaqdo",
+    "host": "ec2-18-232-143-90.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  }
+}
